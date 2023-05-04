@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="assets/css/style.css">
+   <script src="assets/js/generator.js" type="module" defer></script>
+   <title>Lista pseudo-aleatória</title>
+</head>
+<body>
+   <h1>Lista pseudo-aleatória</h1>
+   <button class="gerar-lista">Gerar Lista</button>
+   <section id="amo">
+      <h2>5 coisas pseudo-aleatórias que eu amo</h2>
+   </section>
+   <section id="odeio">
+      <h2>5 coisas pseudo-aleatórias que eu odeio</h2>
+   </section>
+   <section>
+      <pre>
+         <code>
+            const secaoAmo = document.querySelector('#amo');
+            const secaoOdeio = document.querySelector('#odeio');
+
+            const listaGeralAmo = ['música (ouvir e tocar)', 'cinema', 'ler', 'show (especialmente underground)', 'karaokê', 'jogo de tabuleiro', 'café', 'cozinhar', 'podcast', 'newsletters'];
+
+            const listaGeralOdeio = ['linkedin', 'gente arrogante', 'música eletrônica', '"Olha o meu setup"', 'discuro meritocrático descolado da realidade', 'pipoca', 'quem conserta as pessoas na frente dos outros (muitas vezes estando eles mesmos errados)'];
+
+            const listaFinalAmo = [];
+            const listaFinalOdeio = [];
+
+            function fazSorteio(listaGeral, listaFinal){
+               const sorteio = Math.floor(Math.random() * listaGeral.length);
+               listaFinal.push(listaGeral[sorteio]);
+               listaGeral.splice(sorteio, 1);
+            }
+
+            let contador = 0;
+            while(contador < 5){
+               fazSorteio(listaGeralAmo, listaFinalAmo);
+               fazSorteio(listaGeralOdeio, listaFinalOdeio);
+               contador ++;
+            };
+
+            function renderizaLista(lista, destino){
+               const ul = document.createElement('ul');
+               
+               lista.forEach(item => {
+                  const li = document.createElement('li');
+                  li.textContent = item;
+                  ul.appendChild(li);
+               });
+               destino.appendChild(ul);
+            };
+
+            renderizaLista(listaFinalAmo, secaoAmo);
+            renderizaLista(listaFinalOdeio, secaoOdeio);
+         </code>
+      </pre>
+   </section>
+   
+</body>
+</html>
